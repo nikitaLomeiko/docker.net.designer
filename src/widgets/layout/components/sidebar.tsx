@@ -1,14 +1,13 @@
 import React from "react";
-import { ProjectItem } from "entities/project";
-import { ProjectForm } from "features/project-form";
 
 interface IProps {
   isOpen: boolean;
   onClose: () => void;
+  children: React.ReactNode;
 }
 
 export const Sidebar: React.FC<IProps> = (props) => {
-  const { isOpen, onClose } = props;
+  const { isOpen, onClose, children } = props;
 
   return (
     <>
@@ -51,33 +50,7 @@ export const Sidebar: React.FC<IProps> = (props) => {
             <p className="text-sm text-gray-500 mt-2">Конструктор docker-compose файлов</p>
           </div>
 
-          <ProjectForm />
-
-          <div className="flex-1 overflow-y-auto">
-            <div className="p-4">
-              <div className="flex items-center space-x-2 mb-3">
-                <svg
-                  className="w-4 h-4 text-gray-400"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Конфигурации (5)</h3>
-              </div>
-
-              <div className="space-y-2">
-                <ProjectItem id="1" name="docker-compose.yml" onDelete={console.log} onSelect={console.log} />
-                <ProjectItem id="2" name="flowers.ru.yml" onDelete={console.log} onSelect={console.log} />
-                <ProjectItem id="3" name="telegram-bot.yml" onDelete={console.log} onSelect={console.log} isCurrent />
-                <ProjectItem id="4" name="magazin.yml" onDelete={console.log} onSelect={console.log} />
-                <ProjectItem id="5" name="docker-compose2.yml" onDelete={console.log} onSelect={console.log} />
-              </div>
-            </div>
-          </div>
+          {children}
 
           <div className="p-4 border-t border-gray-200">
             <div className="text-center">

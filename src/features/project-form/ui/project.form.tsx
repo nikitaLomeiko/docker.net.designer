@@ -1,9 +1,23 @@
+import { IProject } from "entities/project";
 import { useState } from "react";
 
-export const ProjectForm: React.FC = () => {
+interface IProps {
+  onAddProject: (project: IProject) => void;
+}
+
+export const ProjectForm: React.FC<IProps> = ({ onAddProject }) => {
   const [projectName, setProjectName] = useState<string>("");
 
-  const handleCreateProject = () => {};
+  const handleCreateProject = () => {
+    if (projectName.trim()) {
+      const newProject: IProject = {
+        id: String(Date.now()),
+        name: projectName.trim(),
+      };
+      onAddProject(newProject);
+      setProjectName("");
+    }
+  };
 
   return (
     <div className="p-6 border-b border-gray-200">

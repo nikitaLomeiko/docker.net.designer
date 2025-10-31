@@ -1,4 +1,4 @@
-import { IProject } from "../model/types";
+import { IProject } from "../model/types/types";
 
 interface IProps extends IProject {
   onDelete: () => void;

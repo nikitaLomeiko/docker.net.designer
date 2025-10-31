@@ -2,11 +2,16 @@ import { useState } from "react";
 import { Header } from "./components/header";
 import { Sidebar } from "./components/sidebar";
 
-export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const Layout: React.FC<{ children: React.ReactNode; sidebarBody: React.ReactNode }> = ({
+  children,
+  sidebarBody,
+}) => {
   const [openSidebar, setOpenSidebar] = useState(false);
   return (
     <div className="flex h-[98vh] bg-gray-50">
-      <Sidebar isOpen={openSidebar} onClose={() => setOpenSidebar(false)} />
+      <Sidebar isOpen={openSidebar} onClose={() => setOpenSidebar(false)}>
+        {sidebarBody}
+      </Sidebar>
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header onMenuToggle={() => setOpenSidebar(!openSidebar)} />
