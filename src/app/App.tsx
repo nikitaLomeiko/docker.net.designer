@@ -1,5 +1,6 @@
+import { Layout } from "widgets/layout";
 import "./styles/index.css";
 
 export function App() {
-  return <div className="bg-red-500">app</div>;
+  return <Layout>app</Layout>;
 }
