@@ -1,13 +1,14 @@
 import { IProject } from "../model/types/types";
 
-interface IProps extends IProject {
+interface IProps extends Omit<IProject, "nodes" | "edges"> {
   onDelete: () => void;
   onSelect: () => void;
   isCurrent?: boolean;
+  nodeCount?: number;
 }
 
 export const ProjectItem: React.FC<IProps> = (props) => {
-  const { id, name, onDelete, onSelect, isCurrent = false } = props;
+  const { id, name, onDelete, onSelect, isCurrent = false, nodeCount = 0 } = props;
   return (
     <div
       key={id}
@@ -39,7 +40,7 @@ export const ProjectItem: React.FC<IProps> = (props) => {
           <div className="min-w-0 flex-1">
             <div className="text-sm font-medium text-gray-900 truncate">{name}</div>
             <div className="flex items-center space-x-2 mt-1">
-              <span className="text-xs text-gray-500">25 нод</span>
+              <span className="text-xs text-gray-500">{nodeCount} нод</span>
             </div>
           </div>
         </div>

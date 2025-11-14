@@ -25,6 +25,7 @@ export const ProjectList: React.FC<IProps> = ({ projects = [], currentId }) => {
             isCurrent={project.id === currentId}
             onDelete={() => deleteProject(project.id)}
             onSelect={() => selectProject(project.id)}
+            nodeCount={project.nodes.length}
           />
         ))}
       </div>

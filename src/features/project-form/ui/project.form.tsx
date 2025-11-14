@@ -13,6 +13,8 @@ export const ProjectForm: React.FC<IProps> = ({ onAddProject }) => {
       const newProject: IProject = {
         id: String(Date.now()),
         name: projectName.trim(),
+        edges: [],
+        nodes: [],
       };
       onAddProject(newProject);
       setProjectName("");
