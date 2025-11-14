@@ -51,7 +51,7 @@ export const VolumeForm: React.FC<IFormProps> = (props) => {
           </FormSection>
         )}
 
-        {activeSection === "driver" && (
+        {activeSection === "options" && (
           <FormSection title="Driver Options" subtitle="Configure volume driver options">
             <div className="space-y-6">
               <InputRepeater

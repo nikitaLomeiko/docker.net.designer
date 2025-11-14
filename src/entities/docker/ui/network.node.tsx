@@ -36,6 +36,7 @@ export const NetworkNode: React.FC<IProps> = ({ data, node }) => {
   return (
     <NodeWrapper onDelete={node.onDelete} id={node.id} data={data} form={node.changeForm} typeHandle="target">
       <NodeLayout
+        color="red"
         icon={<NetworkIcon />}
         id={node.id}
         label="Docker Network"

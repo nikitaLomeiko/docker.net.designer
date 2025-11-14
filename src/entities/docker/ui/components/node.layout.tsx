@@ -1,5 +1,6 @@
 interface IProps {
   icon: React.ReactNode;
+  color?: string;
   name: string;
   label: string;
   id: string;
@@ -8,12 +9,12 @@ interface IProps {
 }
 
 export const NodeLayout: React.FC<IProps> = (props) => {
-  const { icon, id, label, name, nameFooter, children } = props;
+  const { icon, id, label, name, nameFooter, children, color = "green" } = props;
   return (
     <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-lg border border-gray-200 p-6 min-w-80 max-w-md backdrop-blur-sm">
       {/* Заголовок */}
       <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200">
-        <div className="p-2 bg-gradient-to-br from-green-500 to-green-600 rounded-lg shadow-sm">{icon}</div>
+        <div className={`p-2 bg-gradient-to-br from-${color}-500 to-${color}-600 rounded-lg shadow-sm`}>{icon}</div>
         <div className="flex-1 min-w-0">
           <h3 className="font-bold text-gray-900 truncate text-lg">{name}</h3>
           <p className="text-sm text-gray-500">{label}</p>

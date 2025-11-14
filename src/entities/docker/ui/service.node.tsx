@@ -26,6 +26,7 @@ export const ServiceNode: React.FC<IProps> = ({ data, node }) => {
     <NodeWrapper onDelete={node.onDelete} id={node.id} data={data} form={node.changeForm} typeHandle="source">
       <NodeLayout
         icon={<ContainerIcon />}
+        color="blue"
         id={node.id}
         label="Docker Service"
         name={data.container_name || "Unnamed Service"}

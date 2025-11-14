@@ -41,44 +41,41 @@ export const ConfigNode: React.FC<IProps> = ({ data, node }) => {
   return (
     <NodeWrapper onDelete={node.onDelete} id={node.id} data={data} form={node.changeForm} typeHandle="target">
       <NodeLayout
-        icon={<FolderIcon />}
+        icon={<SettingsIcon />}
+        color="amber"
         id={node.id}
         label="Docker Config"
         name={data.name || "Unnamed Config"}
         nameFooter="Config Ready"
       >
-        <div className="space-y-6 bg-gradient-to-br from-white to-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-                <h4 className="flex items-center text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
-                  <SettingsIcon />
-                  <span className="ml-2">Basic Information</span>
-                </h4>
+        <div className="space-y-4">
+          <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+            <h4 className="flex items-center text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
+              <SettingsIcon />
+              <span className="ml-2">Basic Information</span>
+            </h4>
 
-                <div className="space-y-3">
-                  <PropertyDisplay icon={<SettingsIcon />} label="Secret Name" value={data.name || "Not specified"} />
+            <div className="space-y-3">
+              <PropertyDisplay icon={<SettingsIcon />} label="Secret Name" value={data.name || "Not specified"} />
 
-                  <PropertyDisplay icon={<ExternalLinkIcon />} label="Config Type">
-                    <ExternalInfo external={data.external} />
-                  </PropertyDisplay>
-                </div>
-              </div>
-
-              <PropertyListDisplay icon={<TagIcon />} label="Labels" property={data.labels} />
-            </div>
-
-            <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-              <h4 className="flex items-center text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
-                <FolderIcon />
-                <span className="ml-2">Config Source</span>
-              </h4>
-              <div className="min-h-[200px]">{renderConfigSource()}</div>
+              <PropertyDisplay icon={<ExternalLinkIcon />} label="Config Type">
+                <ExternalInfo external={data.external} />
+              </PropertyDisplay>
             </div>
           </div>
 
-          {data.content && data.content.length > 1024 && <ContentWarning content={data.content} />}
+          <PropertyListDisplay icon={<TagIcon />} label="Labels" property={data.labels} />
         </div>
+
+        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+          <h4 className="flex items-center text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
+            <FolderIcon />
+            <span className="ml-2">Config Source</span>
+          </h4>
+          <div className="min-h-[200px]">{renderConfigSource()}</div>
+        </div>
+
+        {data.content && data.content.length > 1024 && <ContentWarning content={data.content} />}
       </NodeLayout>
     </NodeWrapper>
   );

@@ -24,6 +24,7 @@ export const VolumeNode: React.FC<IProps> = ({ data, node }) => {
     <NodeWrapper onDelete={node.onDelete} id={node.id} data={data} form={node.changeForm} typeHandle="target">
       <NodeLayout
         icon={<DatabaseIcon />}
+        color="green"
         id={node.id}
         label="Docker Volume"
         nameFooter="Volume Configured"

@@ -67,7 +67,7 @@ export const SecretForm: React.FC<IFormProps> = (props) => {
                   <CheckboxLabel
                     boxType="radio"
                     checked={formData.external === false || formData.external === undefined}
-                    onChange={(value) => handleChangeFormData("external", value)}
+                    onChange={() => handleChangeFormData("external", false)}
                     label="Internal Secret"
                     subLabel="Managed by Docker Compose"
                   />
@@ -77,7 +77,7 @@ export const SecretForm: React.FC<IFormProps> = (props) => {
                       formData.external === true ||
                       (typeof formData.external === "object" && formData.external !== null)
                     }
-                    onChange={(value) => handleChangeFormData("external", value)}
+                    onChange={() => handleChangeFormData("external", true)}
                     label="External Secret"
                     subLabel="Pre-existing secret"
                   />
@@ -89,7 +89,7 @@ export const SecretForm: React.FC<IFormProps> = (props) => {
                     <InputLabel
                       value={typeof formData.external === "object" ? formData.external.name || "" : ""}
                       label="External Secret Name"
-                      onChange={(value) => handleChangeFormData("external", value)}
+                      onChange={(value) => handleChangeFormData("external", { name: value })}
                       placeholder="existing-secret-name"
                     />
                     <p className="mt-2 text-sm text-blue-600">Specify the name of the pre-existing secret</p>

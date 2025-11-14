@@ -59,7 +59,7 @@ export const ConfigForm: React.FC<IFormProps> = (props) => {
                   <CheckboxLabel
                     boxType="radio"
                     checked={formData.external === false || formData.external === undefined}
-                    onChange={(value) => handleChangeFormData("external", value)}
+                    onChange={() => handleChangeFormData("external", false)}
                     label="Internal Config"
                     subLabel="Managed by Docker Compose"
                   />
@@ -69,7 +69,7 @@ export const ConfigForm: React.FC<IFormProps> = (props) => {
                       formData.external === true ||
                       (typeof formData.external === "object" && formData.external !== null)
                     }
-                    onChange={(value) => handleChangeFormData("external", value)}
+                    onChange={() => handleChangeFormData("external", true)}
                     label="External Config"
                     subLabel="Pre-existing Config"
                   />
@@ -81,7 +81,7 @@ export const ConfigForm: React.FC<IFormProps> = (props) => {
                     <InputLabel
                       value={typeof formData.external === "object" ? formData.external.name || "" : ""}
                       label="External Config Name"
-                      onChange={(value) => handleChangeFormData("external", value)}
+                      onChange={(value) => handleChangeFormData("external", { name: value })}
                       placeholder="existing-config-name"
                     />
                     <p className="mt-2 text-sm text-blue-600">Specify the name of the pre-existing config</p>

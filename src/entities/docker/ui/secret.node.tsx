@@ -47,42 +47,37 @@ export const SecretNode: React.FC<IProps> = ({ data, node }) => {
     <NodeWrapper onDelete={node.onDelete} id={node.id} data={data} form={node.changeForm} typeHandle="target">
       <NodeLayout
         icon={<LockIcon />}
+        color="white"
         id={node.id}
         label="Docker Secret"
         name={data.name || "Unnamed Network"}
         nameFooter="Secret Ready"
       >
-        <div className="space-y-6 bg-gradient-to-br from-white to-gray-50 p-6 rounded-xl shadow-lg border border-gray-200">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-                <h4 className="flex items-center text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
-                  <LockIcon />
-                  <span className="ml-2">Basic Information</span>
-                </h4>
+        <div className="space-y-4">
+          <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+            <h4 className="flex items-center text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
+              <LockIcon />
+              <span className="ml-2">Basic Information</span>
+            </h4>
 
-                <div className="space-y-3">
-                  <PropertyDisplay icon={<LockIcon />} label="Secret Name" value={data.name || "Not specified"} />
+            <div className="space-y-3">
+              <PropertyDisplay icon={<LockIcon />} label="Secret Name" value={data.name || "Not specified"} />
 
-                  <PropertyDisplay icon={<ExternalLinkIcon />} label="Secret Type">
-                    <ExternalInfo external={data.external} />
-                  </PropertyDisplay>
-                </div>
-              </div>
-
-              <PropertyListDisplay icon={<TagIcon />} label="Labels" property={data.labels} />
-            </div>
-
-            <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-              <h4 className="flex items-center text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
-                <FolderIcon />
-                <span className="ml-2">Secret Source</span>
-              </h4>
-              <div className="min-h-[200px]">{renderSecretSource()}</div>
+              <PropertyDisplay icon={<ExternalLinkIcon />} label="Secret Type">
+                <ExternalInfo external={data.external} />
+              </PropertyDisplay>
             </div>
           </div>
-          {data.content && data.content.length > 1024 && <ContentWarning content={data.content} />}
+
+          <PropertyListDisplay icon={<TagIcon />} label="Labels" property={data.labels} />
         </div>
+
+        <h4 className="flex items-center text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
+          <FolderIcon />
+          <span className="ml-2">Secret Source</span>
+        </h4>
+        {renderSecretSource()}
+        {data.content && data.content.length > 1024 && <ContentWarning content={data.content} />}
       </NodeLayout>
     </NodeWrapper>
   );
