@@ -43,7 +43,7 @@ export const NetworkNode: React.FC<IProps> = ({ data, node }) => {
         name={data.name || "Unnamed Network"}
         nameFooter="Network Ready"
       >
-        {data.driver && <PropertyDisplay icon={<SettingsIcon />} label="Driver" value={data.driver} />}
+        {data.driver && <PropertyDisplay color="green" icon={<SettingsIcon />} label="Driver" value={data.driver} />}
 
         {data.ipam?.driver && <PropertyDisplay icon={<IpIcon />} label="IPAM Driver" value={data.ipam.driver} />}
 

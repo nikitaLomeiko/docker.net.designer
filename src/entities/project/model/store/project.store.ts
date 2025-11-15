@@ -1,7 +1,7 @@
 import { createEvent, createStore } from "effector";
 import { IProject, IProjectState } from "../types/types";
 import { loadFromStorage, saveToStorage } from "../utils/project.storage";
-import { Node } from "@xyflow/react";
+import { Edge, Node } from "@xyflow/react";
 
 export const addNewProject = createEvent<IProject>();
 export const deleteProject = createEvent<string>();
@@ -11,6 +11,9 @@ export const addNewNode = createEvent<Node>();
 export const changeNodes = createEvent<Node[]>();
 export const changeNode = createEvent<Omit<Node, "type" | "position">>();
 export const deleteNode = createEvent<string>();
+
+export const addNewEdge = createEvent<Edge>();
+export const changeEdge = createEvent<Edge>();
 
 export const $project = createStore<IProjectState>(loadFromStorage())
   .on(addNewProject, (project, newProject) => {
@@ -78,6 +81,34 @@ export const $project = createStore<IProjectState>(loadFromStorage())
         ? {
             ...prj,
             nodes: prj.nodes.filter((nod) => nod.id !== id),
+          }
+        : prj
+    );
+
+    const result = { ...project, projects: updatedProjects };
+    saveToStorage(result);
+    return result;
+  })
+  .on(addNewEdge, (project, edge) => {
+    const updatedProjects = project.projects.map((prj) =>
+      prj.id === project.currentId
+        ? {
+            ...prj,
+            edges: [...(prj.edges || []), edge],
+          }
+        : prj
+    );
+
+    const result = { ...project, projects: updatedProjects };
+    saveToStorage(result);
+    return result;
+  })
+  .on(changeEdge, (project, edge) => {
+    const updatedProjects = project.projects.map((prj) =>
+      prj.id === project.currentId
+        ? {
+            ...prj,
+            edges: prj.edges.map((edg) => (edg.id === edg.id ? { ...edg, ...edge } : edg)),
           }
         : prj
     );

@@ -36,7 +36,7 @@ export const VolumeNode: React.FC<IProps> = ({ data, node }) => {
           value={data.driver ? data.driver : "Default (local)"}
         />
 
-        <PropertyDisplay icon={<VolumeIcon />} label=" Volume Type">
+        <PropertyDisplay color="red" icon={<VolumeIcon />} label=" Volume Type">
           <ExternalInfo external={data.external} />
         </PropertyDisplay>
 

@@ -3,8 +3,6 @@ import {
   Controls,
   MiniMap,
   ReactFlow,
-  addEdge,
-  applyEdgeChanges,
   applyNodeChanges,
   Connection,
   Edge,
@@ -15,8 +13,8 @@ import {
   Panel,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { changeNodes, useCurrentProject } from "entities/project";
-import { useCallback, useState } from "react";
+import { addNewEdge, changeNodes, useCurrentProject } from "entities/project";
+import { useCallback } from "react";
 
 interface IProps {
   dockerNodeTypes: NodeTypes;
@@ -28,8 +26,6 @@ export const DockerConstructor: React.FC<IProps> = (props) => {
 
   const currentProject = useCurrentProject();
 
-  const [edges, setEdges] = useState<Edge[]>([]);
-
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => {
       changeNodes(applyNodeChanges(changes, currentProject?.nodes || []));
@@ -38,18 +34,18 @@ export const DockerConstructor: React.FC<IProps> = (props) => {
   );
 
   const onEdgesChange = useCallback((changes: EdgeChange[]) => {
-    setEdges((edgesSnapshot) => applyEdgeChanges(changes, edgesSnapshot));
+    // setEdges((edgesSnapshot) => applyEdgeChanges(changes, edgesSnapshot));
   }, []);
 
   const onConnect = useCallback((params: Connection | Edge) => {
-    setEdges((edgesSnapshot) => addEdge(params, edgesSnapshot));
+    addNewEdge({ id: String(Date.now()), source: params.source, target: params.target });
   }, []);
 
   return (
     <ReactFlow
       minZoom={0.1}
       nodes={currentProject?.nodes || []}
-      edges={edges}
+      edges={currentProject?.edges || []}
       nodeTypes={dockerNodeTypes}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
