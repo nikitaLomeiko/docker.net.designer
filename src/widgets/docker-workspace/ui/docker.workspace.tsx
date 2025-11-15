@@ -20,6 +20,7 @@ import {
 import { ConfigForm, NetworkForm, SecretForm, ServiceForm, Toolbar, VolumeForm } from "features/docker-toolbar";
 import { DockerConstructor } from "features/docker-constructor";
 import { deleteNode } from "entities/project";
+import { PathForm } from "features/docker-toolbar/ui/forms/path.form";
 
 type NodeNames = ServiceNodeName | NetworkNodeName | VolumeNodeName | SecretNodeName | ConfigNodeName;
 
@@ -34,7 +35,7 @@ const dockerNodes: Record<NodeNames, any> = {
 export const DockerWorksapce: React.FC = () => {
   return (
     <div style={{ width: "100%", height: "100%" }}>
-      <DockerConstructor dockerNodeTypes={dockerNodes} toolbar={<Toolbar />} />
+      <DockerConstructor PathForm={PathForm} dockerNodeTypes={dockerNodes} toolbar={<Toolbar />} />
     </div>
   );
 };
