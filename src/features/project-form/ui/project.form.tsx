@@ -1,5 +1,6 @@
 import { IProject } from "entities/project";
 import { useState } from "react";
+import { generateId } from "shared/utils/generate.id";
 
 interface IProps {
   onAddProject: (project: IProject) => void;
@@ -11,7 +12,7 @@ export const ProjectForm: React.FC<IProps> = ({ onAddProject }) => {
   const handleCreateProject = () => {
     if (projectName.trim()) {
       const newProject: IProject = {
-        id: String(Date.now()),
+        id: generateId(),
         name: projectName.trim(),
         edges: [],
         nodes: [],

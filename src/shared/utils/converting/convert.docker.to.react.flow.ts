@@ -1,5 +1,6 @@
 import { Edge, Node } from "@xyflow/react";
 import { DockerComposeConfig } from "entities/docker";
+import { generateId } from "../generate.id";
 
 interface ReactFlowConversionResult {
   nodes: Node[];
@@ -32,7 +33,7 @@ export const convertDockerComposeToReactFlow = (composeConfig: DockerComposeConf
 
   Object.entries(composeConfig.services).forEach(([serviceName, serviceConfig]) => {
     serviceNodes.push({
-      id: String(Date.now()),
+      id: generateId(),
       type: "service",
       position: { x: 0, y: 0 },
       data: {
@@ -46,7 +47,7 @@ export const convertDockerComposeToReactFlow = (composeConfig: DockerComposeConf
   if (composeConfig.networks) {
     Object.keys(composeConfig.networks).forEach((networkName) => {
       networkNodes.push({
-        id: String(Date.now()),
+        id: generateId(),
         type: "network",
         position: { x: 0, y: 0 },
         data: {
@@ -61,7 +62,7 @@ export const convertDockerComposeToReactFlow = (composeConfig: DockerComposeConf
   if (composeConfig.volumes) {
     Object.keys(composeConfig.volumes).forEach((volumeName) => {
       volumeNodes.push({
-        id: String(Date.now()),
+        id: generateId(),
         type: "volume",
         position: { x: 0, y: 0 },
         data: {
@@ -77,7 +78,7 @@ export const convertDockerComposeToReactFlow = (composeConfig: DockerComposeConf
   if (composeConfig.secrets) {
     Object.keys(composeConfig.secrets).forEach((secretName) => {
       secretNodes.push({
-        id: String(Date.now()),
+        id: generateId(),
         type: "secret",
         position: { x: 0, y: 0 },
         data: {
@@ -93,7 +94,7 @@ export const convertDockerComposeToReactFlow = (composeConfig: DockerComposeConf
   if (composeConfig.configs) {
     Object.keys(composeConfig.configs).forEach((configName) => {
       configNodes.push({
-        id: String(Date.now()),
+        id: generateId(),
         type: "config",
         position: { x: 0, y: 0 },
         data: {

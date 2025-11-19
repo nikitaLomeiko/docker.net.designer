@@ -1,5 +1,6 @@
 import { addNewNode, changeNode } from "entities/project";
 import { useState } from "react";
+import { generateId } from "shared/utils/generate.id";
 
 interface IProps {
   isChanged?: boolean;
@@ -30,7 +31,7 @@ export const useForm = <T>(data: Partial<T>, props: IProps) => {
       changeNode({ id: changedId, data: { ...formData } });
     } else {
       addNewNode({
-        id: String(Date.now()),
+        id: generateId(),
         position: { x: 0, y: 0 },
         type: typeNode,
         data: { ...formData },
