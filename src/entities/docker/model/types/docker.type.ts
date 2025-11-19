@@ -116,14 +116,14 @@ export type DeployConfig = {
 export type ServiceConfig = {
   image?: string;
   container_name?: string;
-  depends_on: string[];
+  depends_on: string[] | undefined;
   ports?: string[];
   volumes?: string[];
   networks?: Record<string, NetworkMapping> | string[];
   environment?: Record<string, string> | string[];
   restart?: "no" | "always" | "on-failure" | "unless-stopped";
   command?: string | string[];
-  entrypoint?: string;
+  entrypoint?: string | string[] | undefined;
   user?: string;
   working_dir?: string;
   secrets?:
@@ -146,21 +146,23 @@ export type ServiceConfig = {
       }>;
 };
 
+export type IpamType = {
+  driver?: string;
+  config?: Array<{
+    subnet?: string;
+    ip_range?: string;
+    gateway?: string;
+    aux_addresses?: Record<string, string>;
+  }>;
+  options?: Record<string, string>;
+};
+
 export type NetworkConfig = {
   driver?: string;
   driver_opts?: Record<string, string>;
   attachable?: boolean;
   enable_ipv6?: boolean;
-  ipam?: {
-    driver?: string;
-    config?: Array<{
-      subnet?: string;
-      ip_range?: string;
-      gateway?: string;
-      aux_addresses?: Record<string, string>;
-    }>;
-    options?: Record<string, string>;
-  };
+  ipam?: IpamType;
   internal?: boolean;
   labels?: Record<string, string>;
   external?: boolean;
