@@ -109,9 +109,9 @@ export const convertReactFlowToDockerCompose = ({ nodes, edges, name }: ReactFlo
   const secrets: Record<string, SecretConfig> = {};
   const configs: Record<string, ConfigConfig> = {};
 
-  if (name) {
-    composeConfig.name = name;
-  }
+  // if (name) {
+  //   composeConfig.name = name;
+  // }
 
   const serviceNodes = nodes.filter((node) => node.type === "service");
   const networkNodes = nodes.filter((node) => node.type === "network");
@@ -135,7 +135,6 @@ export const convertReactFlowToDockerCompose = ({ nodes, edges, name }: ReactFlo
 
     const serviceConfig: ServiceConfig = {
       image: getString(serviceNode.data.image),
-      container_name: getString(serviceNode.data.container_name),
       ports: getStringArray(serviceNode.data.ports),
       environment: getEnvironment(serviceNode.data.environment),
       restart: getRestartPolicy(serviceNode.data.restart),
@@ -174,7 +173,6 @@ export const convertReactFlowToDockerCompose = ({ nodes, edges, name }: ReactFlo
         if (volumeMappings.length > 0) {
           serviceConfig.volumes = volumeMappings;
 
-          // Добавляем имена volumes из edges
           volumeMappings.forEach((mapping) => {
             const volumeName = mapping.split(":")[0];
             if (volumeName) {

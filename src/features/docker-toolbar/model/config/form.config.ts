@@ -33,3 +33,8 @@ export const configFormSections = [
   { id: "source", name: "Config Source", icon: "📄" },
   { id: "labels", name: "Labels", icon: "🏷️" },
 ];
+
+export const downloadFormSections = [
+  { id: "basic", name: "Editor", icon: "📝" },
+  { id: "settings", name: "Settings", icon: "⚙️" },
+];
