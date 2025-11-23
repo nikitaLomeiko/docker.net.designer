@@ -99,7 +99,7 @@ const extractVolumeNamesFromMappings = (volumeMappings: string[]): string[] => {
   return Array.from(volumeNames);
 };
 
-export const convertReactFlowToDockerCompose = ({ nodes, edges, name }: ReactFlowToDockerComposeParams): string => {
+export const convertReactFlowToDockerCompose = ({ nodes, edges }: ReactFlowToDockerComposeParams): string => {
   const composeConfig: DockerComposeConfig = {
     services: {},
   };

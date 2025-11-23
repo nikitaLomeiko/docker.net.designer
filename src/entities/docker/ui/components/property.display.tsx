@@ -1,7 +1,7 @@
 interface IProps {
   icon: React.ReactNode;
   label: string;
-  value?: string;
+  value?: string | string[];
   color?: string;
   children?: React.ReactNode;
 }

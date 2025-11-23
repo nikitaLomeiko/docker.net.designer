@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { DownloadIcon } from "./components/icons/download.icon";
 import { ErrorMessage } from "./components/error.message";
-import { SuccessfulyMessage } from "./components/successfuly.message";
 
 interface FileInputProps {
   onFileSelected?: (file: File) => void;

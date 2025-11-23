@@ -6,7 +6,6 @@ import {
   applyNodeChanges,
   Connection,
   Edge,
-  EdgeChange,
   NodeChange,
   BackgroundVariant,
   NodeTypes,
@@ -41,10 +40,6 @@ export const DockerConstructor: React.FC<IProps> = (props) => {
     [currentProject?.nodes]
   );
 
-  const onEdgesChange = useCallback((changes: EdgeChange[]) => {
-    // setEdges((edgesSnapshot) => applyEdgeChanges(changes, edgesSnapshot));
-  }, []);
-
   const onConnect = useCallback(
     (params: Connection | Edge) => {
       addNewEdge({ id: String(Date.now()), source: params.source, target: params.target });
@@ -75,7 +70,6 @@ export const DockerConstructor: React.FC<IProps> = (props) => {
         edges={currentProject?.edges || []}
         nodeTypes={dockerNodeTypes}
         onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         fitView
       >
